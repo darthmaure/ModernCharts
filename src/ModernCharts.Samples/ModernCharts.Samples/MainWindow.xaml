@@ -1,0 +1,51 @@
+﻿<Window x:Class="ModernCharts.Samples.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ModernCharts.Samples"
+        xmlns:charts="clr-namespace:PKCode.PresentationFramework.Charts;assembly=PKCode.PresentationFramework.Charts"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <mah:FlipView x:Name="flipView" Grid.Row="1" Margin="3" DownTransition="RightReplace" IsBannerEnabled="False">
+            <mah:FlipView.Items>
+                <mah:FlipViewItem>
+                    <charts:Chart Margin="10,4"
+                                  ItemsSource="{Binding Path=SimplePointSerie}" 
+                                  ChartTitle="Continents" 
+                                  SerieDataProperty="Points" 
+                                  SerieNameProperty="Name"
+                                  ValueProperty="Value"
+                                  DisplayProperty="Name" 
+                                  ChartType="Point" 
+                                  ShowItems="True"
+                                  AxisLabelStringFormat="{}{0:00} km²"/>
+                </mah:FlipViewItem>
+                <mah:FlipViewItem>
+                    <charts:Chart Margin="10,4"
+                                  ItemsSource="{Binding Path=WorldPopulation}" 
+                                  ChartTitle="world population (mln)" 
+                                  SerieDataProperty="Points" 
+                                  SerieNameProperty="Name"
+                                  ValueProperty="Value"
+                                  DisplayProperty="Name" 
+                                  ChartType="Line" 
+                                  ShowItems="True"
+                                  AxisLabelStringFormat="{}{0:0 mln}"
+                                  MaximalValue="12000"/>
+                </mah:FlipViewItem>
+            </mah:FlipView.Items>
+        </mah:FlipView>
+    </Grid>
+</Window>
